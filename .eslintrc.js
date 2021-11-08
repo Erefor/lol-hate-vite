@@ -2,7 +2,13 @@ module.exports = {
     extends: [
         'plugin:vue/vue3-strongly-recommended', // Priority A: Essential (Error Prevention)
     ],
-
+    plugins: [
+        // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-file
+        // required to lint *.vue files
+        'eslint-plugin-vue',
+        'vue',
+        'import',
+    ],
     rules: {
         'no-param-reassign': 'off',
         'no-void': 'off',
