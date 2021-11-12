@@ -1,10 +1,12 @@
 <template>
-<h1>Hola</h1>
+  <div class="tab-inicio">
+    <JSText>Vamos con todo para LoL Hate</JSText>
+  </div>
 </template>
-
 <script>
 export default {
-  name: 'index'
+    name: 'IndexMainPage',
+
 }
 </script>
 
