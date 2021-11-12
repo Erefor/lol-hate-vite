@@ -14,7 +14,7 @@
         <h1>Buscar</h1>
       </Tab>
       <Tab title="Reportar">
-        <h1>Reportar</h1>
+        <ReportPage />
       </Tab>
     </JSTabs>
   </div>
@@ -23,14 +23,15 @@
 <script>
 import {ref} from 'vue'
 import MainPageTab from './Pages/MainPage/index.vue'
+import ReportPage from './Pages/ReportPage/index.vue'
 import JSTabs from './components/Molecules/JSTabs.vue'
 import Tab from './components/Atoms/Tab.vue'
 export default {
     components: {
-        JSTabs, Tab, MainPageTab,
+        JSTabs, Tab, MainPageTab, ReportPage,
     },
     setup() {
-        const nombre = ref('LoL Hate es lo mejor')
+        const nombre = ref('LoL Hate')
         return {
             nombre
         }
@@ -43,7 +44,7 @@ export default {
   font-family: "Open Sans",Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 24px;
+  margin: 48px;
 }
 .contenedor-principal{
   width: 100%;
