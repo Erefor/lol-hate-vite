@@ -6,15 +6,13 @@
         v-model="summonerName"
         :rules="[value => value.trim() !== '' || 'Agrega un nombre valido']"
       />
-      <button @click="getSummonerData">
+      <button @click="showModal = !showModal">
         Buscar
       </button>
-      <teleport>
-        <JSText>
-          Hola, puerco
-        </JSText>
-      </teleport>
     </div>
+    <JSDialog v-model="showModal">
+      <JSText>No hay jugadores con ese nombre</JSText>
+    </JSDialog>
     <JSText v-if="summonerData">
       {{ summonerData.name }}
     </JSText>
@@ -26,15 +24,17 @@ import { ref } from 'vue'
 import { database } from '../../Boot/Firebase'
 import { ref as refFirebase, get, child } from 'firebase/database'
 import JSInput from '../../components/Molecules/JSInput.vue'
+import JSDialog from '../../components/Atoms/JSDialog.vue'
 export default {
     name: 'IndexReportPage',
     components: {
-        JSInput,
+        JSInput, JSDialog
     },
     setup() {
         const summonerName = ref('')
         const apiKey = ref('')
         const summonerData = ref(null)
+        const showModal = ref(true)
         async function getApiKey() {
             const key = await get(await child(refFirebase(database), '/apiKey'))
             apiKey.value = key.val()
@@ -52,6 +52,8 @@ export default {
         return {
             summonerName,
             summonerData,
+            apiKey,
+            showModal,
             getSummonerData,
         }
     }
