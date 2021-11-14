@@ -21,17 +21,20 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import {provide, ref} from 'vue'
 import MainPageTab from './Pages/MainPage/index.vue'
 import ReportPage from './Pages/ReportPage/index.vue'
 import JSTabs from './components/Molecules/JSTabs.vue'
 import Tab from './components/Atoms/Tab.vue'
+import useGetApiKey from './composables/useGetApiKey'
 export default {
     components: {
         JSTabs, Tab, MainPageTab, ReportPage,
     },
     setup() {
+        const apiKey = useGetApiKey()
         const nombre = ref('LoL Hate')
+        provide('apiKey', apiKey)
         return {
             nombre
         }

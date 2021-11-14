@@ -24,13 +24,12 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { database } from '../../Boot/Firebase'
-import { ref as refFirebase, get, child } from 'firebase/database'
+import {inject, ref} from 'vue'
 import JSInput from '../../components/Molecules/JSInput.vue'
 import JSDialog from '../../components/Atoms/JSDialog.vue'
 import JSModalBody from '../../components/Atoms/JSModalBody.vue'
 import SummonerCard from '../../components/SummonerCard.vue'
+import useGetSummonerData from '../../composables/useGetSummonerData'
 export default {
     name: 'IndexReportPage',
     components: {
@@ -38,15 +37,11 @@ export default {
     },
     setup() {
         const summonerName = ref('')
-        const apiKey = ref('')
+        const apiKey = inject('apiKey')
         const summonerData = ref(null)
         const showModal = ref(false)
         const input = ref(null)
         const loading = ref(false)
-        async function getApiKey() {
-            const key = await get(await child(refFirebase(database), '/apiKey'))
-            apiKey.value = key.val()
-        }
         async function getSummonerData() {
             loading.value = true
             if (!input.value.tomarValidacionDeCampo()){
@@ -54,15 +49,13 @@ export default {
                 return
             }
             try {
-                const data = await fetch(`https://la1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName.value}?api_key=${apiKey.value}`)
-                summonerData.value = await data.json()
+                summonerData.value = useGetSummonerData(summonerName.value, apiKey)
                 loading.value = false
             } catch (e) {
                 loading.value = false
                 showModal.value = true
             }
         }
-        getApiKey()
         return {
             summonerName,
             summonerData,
