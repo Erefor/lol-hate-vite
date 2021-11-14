@@ -48,7 +48,6 @@ export default {
 }
 .contenedor-principal{
   width: 100%;
-  height: clamp(400px, 850px, 1200px);
 }
 .titulo{ margin-bottom: 24px }
 </style>
