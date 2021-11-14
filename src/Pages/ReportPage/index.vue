@@ -19,6 +19,7 @@
     <JSText v-if="summonerData">
       {{ summonerData.name }}
     </JSText>
+    <SummonerCard />
   </div>
 </template>
 
@@ -29,10 +30,11 @@ import { ref as refFirebase, get, child } from 'firebase/database'
 import JSInput from '../../components/Molecules/JSInput.vue'
 import JSDialog from '../../components/Atoms/JSDialog.vue'
 import JSModalBody from '../../components/Atoms/JSModalBody.vue'
+import SummonerCard from '../../components/SummonerCard.vue'
 export default {
     name: 'IndexReportPage',
     components: {
-        JSInput, JSDialog, JSModalBody,
+        JSInput, JSDialog, JSModalBody, SummonerCard
     },
     setup() {
         const summonerName = ref('')
