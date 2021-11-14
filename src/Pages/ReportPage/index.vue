@@ -1,17 +1,20 @@
 <template>
   <div>
+    <LoadingIndicator v-if="loading" />
     <div class="inputs">
       <JSInput
+        ref="input"
         label="Buscar invocador"
         v-model="summonerName"
         :rules="[value => value.trim() !== '' || 'Agrega un nombre valido']"
+        @keypress.enter="getSummonerData"
       />
-      <button @click="showModal = !showModal">
-        Buscar
-      </button>
+      <JSButton @click="getSummonerData">
+        Buscar invocador
+      </JSButton>
     </div>
     <JSDialog v-model="showModal">
-      <JSText>No hay jugadores con ese nombre</JSText>
+      <JSModalBody> <JSText>No hay un invocador con ese nombre</JSText></JSModalBody>
     </JSDialog>
     <JSText v-if="summonerData">
       {{ summonerData.name }}
@@ -25,27 +28,36 @@ import { database } from '../../Boot/Firebase'
 import { ref as refFirebase, get, child } from 'firebase/database'
 import JSInput from '../../components/Molecules/JSInput.vue'
 import JSDialog from '../../components/Atoms/JSDialog.vue'
+import JSModalBody from '../../components/Atoms/JSModalBody.vue'
 export default {
     name: 'IndexReportPage',
     components: {
-        JSInput, JSDialog
+        JSInput, JSDialog, JSModalBody,
     },
     setup() {
         const summonerName = ref('')
         const apiKey = ref('')
         const summonerData = ref(null)
-        const showModal = ref(true)
+        const showModal = ref(false)
+        const input = ref(null)
+        const loading = ref(false)
         async function getApiKey() {
             const key = await get(await child(refFirebase(database), '/apiKey'))
             apiKey.value = key.val()
         }
         async function getSummonerData() {
+            loading.value = true
+            if (!input.value.tomarValidacionDeCampo()){
+                loading.value = false
+                return
+            }
             try {
                 const data = await fetch(`https://la1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName.value}?api_key=${apiKey.value}`)
                 summonerData.value = await data.json()
-                console.log(summonerData.value)
+                loading.value = false
             } catch (e) {
-                console.log(e)
+                loading.value = false
+                showModal.value = true
             }
         }
         getApiKey()
@@ -54,6 +66,8 @@ export default {
             summonerData,
             apiKey,
             showModal,
+            input,
+            loading,
             getSummonerData,
         }
     }
@@ -64,7 +78,7 @@ export default {
 .inputs{
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: row;
   width: 500px;
   height: 70px;
