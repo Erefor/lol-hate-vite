@@ -32,11 +32,14 @@ export default {
         JSTabs, Tab, MainPageTab, ReportPage,
     },
     setup() {
-        const apiKey = useGetApiKey()
+        const apiKey = ref(null)
         const nombre = ref('LoL Hate')
+        async function getKey() { apiKey.value = await useGetApiKey() }
+        getKey()
         provide('apiKey', apiKey)
         return {
-            nombre
+            nombre,
+            apiKey,
         }
     }
 }

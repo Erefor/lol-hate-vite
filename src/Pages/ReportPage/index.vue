@@ -19,7 +19,10 @@
     <JSText v-if="summonerData">
       {{ summonerData.name }}
     </JSText>
-    <SummonerCard />
+    <SummonerCard
+      v-if="summonerData"
+      :summoner-data="summonerData"
+    />
   </div>
 </template>
 
@@ -49,7 +52,7 @@ export default {
                 return
             }
             try {
-                summonerData.value = useGetSummonerData(summonerName.value, apiKey)
+                summonerData.value = await useGetSummonerData(summonerName.value, apiKey.value)
                 loading.value = false
             } catch (e) {
                 loading.value = false
