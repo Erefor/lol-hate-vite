@@ -15,8 +15,8 @@ div{
   padding: 50px;
   border-radius: 10px;
   background-color: white;
-  width: clamp(250px, 500px, 750px);
-  height: clamp(250px, 300px, 500px);
+  width: clamp(200px, 500px, 750px);
+  height: clamp(200px, 300px, 500px);
   margin: 12px;
 }
 </style>

@@ -7,7 +7,7 @@
       {{ nombre }}
     </JSText>
     <JSTabs tab-title-variant="subtitle-text">
-      <Tab title="inicio">
+      <Tab title="Inicio">
         <MainPageTab />
       </Tab>
       <Tab title="Buscar">

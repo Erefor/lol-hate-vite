@@ -3,6 +3,7 @@
     <LoadingIndicator v-if="loading" />
     <div class="inputs">
       <JSInput
+        width="468px"
         ref="input"
         label="Buscar invocador"
         v-model="summonerName"
@@ -14,15 +15,13 @@
       </JSButton>
     </div>
     <JSDialog v-model="showModal">
-      <JSModalBody> <JSText>No hay un invocador con ese nombre</JSText></JSModalBody>
+      <NotificationModal
+        description="No hay jugadores con ese nombre"
+        button-text="Entendido"
+        @action="showModal = false"
+      />
     </JSDialog>
-    <JSText v-if="summonerData">
-      {{ summonerData.name }}
-    </JSText>
-    <SummonerCard
-      v-if="summonerData"
-      :summoner-data="summonerData"
-    />
+    <ReportSection :summoner-data="summonerData" />
   </div>
 </template>
 
@@ -30,13 +29,15 @@
 import {inject, ref} from 'vue'
 import JSInput from '../../components/Molecules/JSInput.vue'
 import JSDialog from '../../components/Atoms/JSDialog.vue'
-import JSModalBody from '../../components/Atoms/JSModalBody.vue'
-import SummonerCard from '../../components/SummonerCard.vue'
+import NotificationModal from '../../components/NotificationModal.vue'
 import useGetSummonerData from '../../composables/useGetSummonerData'
+import ReportSection from './ReportSection.vue'
+
 export default {
     name: 'IndexReportPage',
     components: {
-        JSInput, JSDialog, JSModalBody, SummonerCard
+        ReportSection,
+        JSInput, JSDialog, NotificationModal,
     },
     setup() {
         const summonerName = ref('')
@@ -52,6 +53,7 @@ export default {
                 return
             }
             try {
+                summonerData.value = null
                 summonerData.value = await useGetSummonerData(summonerName.value, apiKey.value)
                 loading.value = false
             } catch (e) {
@@ -75,10 +77,16 @@ export default {
 <style scoped>
 .inputs{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
   flex-direction: row;
-  width: 500px;
+  width: 701px;
   height: 70px;
+}
+.center-items{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
 }
 </style>

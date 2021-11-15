@@ -31,7 +31,8 @@ export default {
     setup(props, { slots }) {
         const tabTitles = ref(slots.default().map(tab => tab.props.title))
         const selectedTitle = ref(tabTitles.value[0])
-
+        function selectSearchSection() { selectedTitle.value = tabTitles.value[1] }
+        provide('selectSearchSection',selectSearchSection)
         provide('selectedTitle', selectedTitle)
         return {
             tabTitles,
