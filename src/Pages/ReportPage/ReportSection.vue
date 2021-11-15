@@ -114,4 +114,18 @@ form{
   justify-content: space-between;
   flex-direction: column;
 }
+@media (max-width: 759px) {
+    .report-section{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    form{
+        height: 400px;
+        margin-top: 48px;
+    }
+}
 </style>

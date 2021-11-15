@@ -3,7 +3,6 @@
     <LoadingIndicator v-if="loading" />
     <div class="inputs">
       <JSInput
-        width="468px"
         ref="input"
         label="Buscar invocador"
         v-model="summonerName"
@@ -88,5 +87,14 @@ export default {
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
+}
+@media (max-width: 759px) {
+    .inputs{
+        height: 120px;
+        width: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }
 </style>

@@ -57,4 +57,9 @@ export default {
   width: 100%;
 }
 .titulo{ margin-bottom: 24px }
+@media (max-width: 450px) {
+    #app{
+        margin: 12px;
+    }
+}
 </style>

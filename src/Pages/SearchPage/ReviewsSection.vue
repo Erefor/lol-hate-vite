@@ -77,6 +77,21 @@ li{
     padding: 12px;
     border-bottom: solid 2px cornflowerblue;
 }
+@media (max-width: 759px) {
+    .reviews-section{
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    ul{
+        height: 400px;
+        width: 100%;
+        margin-top: 48px;
+    }
+}
 ::-webkit-scrollbar {
     width: 10px;
 }

@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .tab-inicio{
-  width: 50%;
+  width: 100%;
 }
 .margin-bottom{
   margin-bottom: 12px;

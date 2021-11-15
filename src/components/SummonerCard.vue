@@ -69,4 +69,14 @@ a{
   color: cornflowerblue;
   font-weight: 600;
 }
+@media (max-width: 450px) {
+    .card-container{
+        width: 100%;
+        height: 300px;
+    }
+    .image img {
+        width: 150px;
+        height: 150px;
+    }
+}
 </style>

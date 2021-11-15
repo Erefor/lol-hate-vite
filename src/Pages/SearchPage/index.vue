@@ -2,7 +2,6 @@
   <div class="search-container">
     <div class="inputs">
       <JSInput
-        width="468px"
         ref="input"
         label="Buscar invocador"
         v-model="summonerName"
@@ -85,5 +84,15 @@ export default {
 }
 .reviews-section{
     margin-top: 48px;
+}
+@media (max-width: 759px) {
+    .search-container{ width: auto }
+    .inputs{
+        height: 120px;
+        width: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }
 </style>
