@@ -88,7 +88,7 @@ export default {
 @media (max-width: 759px) {
     .search-container{ width: auto }
     .inputs{
-        height: 120px;
+        height: 160px;
         width: auto;
         flex-direction: column;
         justify-content: space-between;

@@ -40,8 +40,8 @@
       class="margin-bottom"
       variant="description"
     >
-      Por otra parte, si deseas escribir algún comentario, insulto, propuesta, recomendación, etc...
-      puedes dar click sobre la pequeña pestaña con el texto <strong>reportar</strong> y generar
+      Por otra parte, si deseas escribir algún comentario, insulto, propuesta, recomendación, etc.
+      Puedes dar clic sobre la pequeña pestaña con el texto <strong>reportar</strong> y generar
       un comentario para ese jugador
     </JSText>
     <JSText
@@ -53,7 +53,8 @@
     <JSText variant="description">
       LoL Hate se encuentra en fase beta, es posible que se apliquen cambios o mejoras en la plataforma,
       debido a esto, existe la posibilidad de que los registros o comentarios sobre los jugadores sean
-      eliminados. Esperamos que no sea así.
+      eliminados. Esperamos que no sea así. Si tienes ideas, comentarios, mejoras, insultos o solo te gustaría agradecer, puedes
+      enviarme un correo a <strong>lolhateforthewin@gmail.com</strong>
     </JSText>
   </div>
 </template>

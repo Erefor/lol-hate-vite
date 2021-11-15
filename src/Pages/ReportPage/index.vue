@@ -90,7 +90,7 @@ export default {
 }
 @media (max-width: 759px) {
     .inputs{
-        height: 120px;
+        height: 160px;
         width: auto;
         flex-direction: column;
         justify-content: space-between;

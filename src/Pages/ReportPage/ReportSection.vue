@@ -29,6 +29,14 @@
         button-text="Entendido"
       />
     </JSDialog>
+    <JSDialog v-model="showInvalidFieldModal">
+      <NotificationModal
+        class="center"
+        @action="showInvalidFieldModal = false"
+        description="Debes agregar un comentario valido, por favor"
+        button-text="Entendido"
+      />
+    </JSDialog>
   </div>
 </template>
 <script>
@@ -57,6 +65,7 @@ export default {
         const reset = inject('selectSearchSection')
         const loading = ref(false)
         const showSuccessModal = ref(false)
+        const showInvalidFieldModal = ref(false)
         const options = ref([
             'Buen jugador', 'Se fue Afk', 'Ayuda al equipo enemigo', 'Tóxico como el cianuro',
             'Muerte intencional', 'Prueba campeones en ranked', 'Insultó a mi madre', 'Pésimo jugador',
@@ -64,6 +73,11 @@ export default {
         ])
         async function submitReview() {
             loading.value = true
+            if (review.value.length < 10){
+                loading.value = false
+                showInvalidFieldModal.value = true
+                return
+            }
             await push(refFirebase(database, `summoners/${props.summonerData.name}/reviews`), {
                 review: review.value,
                 reason: reviewTag.value
@@ -84,6 +98,7 @@ export default {
             review,
             loading,
             showSuccessModal,
+            showInvalidFieldModal,
             submitReview,
             resetSection,
         }
