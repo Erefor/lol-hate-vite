@@ -11,7 +11,7 @@
         <MainPageTab />
       </Tab>
       <Tab title="Buscar">
-        <h1>Buscar</h1>
+        <SearchPage />
       </Tab>
       <Tab title="Reportar">
         <ReportPage />
@@ -24,16 +24,17 @@
 import {provide, ref} from 'vue'
 import MainPageTab from './Pages/MainPage/index.vue'
 import ReportPage from './Pages/ReportPage/index.vue'
+import SearchPage from './Pages/SearchPage/index.vue'
 import JSTabs from './components/Molecules/JSTabs.vue'
 import Tab from './components/Atoms/Tab.vue'
 import useGetApiKey from './composables/useGetApiKey'
 export default {
     components: {
-        JSTabs, Tab, MainPageTab, ReportPage,
+        JSTabs, Tab, MainPageTab, ReportPage, SearchPage,
     },
     setup() {
         const apiKey = ref(null)
-        const nombre = ref('LoL Hate')
+        const nombre = ref('LoL Hate / LATAM')
         async function getKey() { apiKey.value = await useGetApiKey() }
         getKey()
         provide('apiKey', apiKey)

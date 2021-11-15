@@ -65,8 +65,8 @@ export default {
         async function submitReview() {
             loading.value = true
             await push(refFirebase(database, `summoners/${props.summonerData.name}/reviews`), {
-                reason: review.value,
-                review: reviewTag.value
+                review: review.value,
+                reason: reviewTag.value
             })
             loading.value = false
             showSuccessModal.value = true
@@ -113,11 +113,5 @@ form{
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-}
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
 }
 </style>

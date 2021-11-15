@@ -39,5 +39,11 @@ export default {
 </script>
 
 <style scoped>
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
 
 </style>

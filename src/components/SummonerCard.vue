@@ -17,7 +17,7 @@
         <a
           target="_blank"
           :href="`https://lan.op.gg/summoner/userName=${summonerData.name}`"
-        >OP GG</a>
+        >OP.GG</a>
       </JSText>
     </div>
   </div>
